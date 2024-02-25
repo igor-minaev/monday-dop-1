@@ -1,20 +1,29 @@
 import React from 'react';
-import {CurrentBankomat} from "./CurrentBankomat";
-import {MoneyType} from "./App";
+import {CurrentBankomat} from './CurrentBankomat';
+import {MoneyType} from './App';
+import styled from 'styled-components';
 
 type CityPropsType = {
-    data: any //встречаем денюжки
+    data: MoneyType[] //встречаем денюжки
 }
 
 export const City = (props: CityPropsType) => {
 
-    // пока это пропускам
-    // const mappedMoney = props.data.map((el: MoneyType, index) => (
-    //     <CurrentBankomat
-    //         key={index}
-    //         money={el}
-    //     />
-    // ))
+    const mappedMoney = props.data.map((el: MoneyType, index) => (
+        <CurrentBankomat
+            key={index}
+            money={el}
+        />
+    ))
+    // const mappedMoney = props.data.map(el => {
+    //     return (
+    //         <Wrapper key={el.number}>
+    //             <span>{el.banknotes}</span>
+    //             <span>{el.number}</span>
+    //             <span>{el.value}</span>
+    //         </Wrapper>
+    //     )
+    // })
 
 
     return (
@@ -22,9 +31,20 @@ export const City = (props: CityPropsType) => {
             <div>Ну все парни, мапимся -выводим наши денюжки</div>
             <div>На верстку ПОКА не обращаем внимания , сейчас занимаемся логикой</div>
             {/*<div>{mappedMoney}</div>*/}
+            <ul>
+                <Wrapper>{mappedMoney}</Wrapper>
+            </ul>
         </div>
     );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`
+
+
 //1
 // Вроде все норм, но нужно причесать код. Давайте создадим const mappedMoney = props.data.map(el=>el...)
 // Т.е. нам нужно вынести map из вертски, оставив в верстке только mappedMoney
